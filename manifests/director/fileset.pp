@@ -10,9 +10,7 @@ define bacula::fileset (
   ) {
   validate_hash($options)
 
-  include bacula::common
-
-  @@concat::fragment { "bacula-fileset-${name}":
+  concat::fragment { "bacula-fileset-${name}":
     target  => "${conf_dir}/conf.d/fileset.conf",
     content => template('bacula/fileset.conf.erb'),
     tag     => "bacula-${bacula::params::director}";
