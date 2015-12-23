@@ -88,8 +88,9 @@ define bacula::job (
     $fileset_real = 'Common'
   }
 
-  @@bacula::director::job { $name:
-    content => template($template),
+  @@concat::fragment { "bacula-director-job-${name}":
+    target  => "${conf_dir}/conf.d/job.conf",
+    content => $content,
     tag     => "bacula-${::bacula::params::director}";
   }
 }

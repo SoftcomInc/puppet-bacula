@@ -2,7 +2,7 @@
 #
 # A grouping of files to backup.
 #
-define bacula::fileset (
+define bacula::director::fileset (
     $files,
     $excludes = '',
     $options  = {'signature' => 'SHA1', 'compression' => 'GZIP9'},
