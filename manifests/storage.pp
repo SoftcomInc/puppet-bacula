@@ -83,11 +83,13 @@ class bacula::storage (
     }
   }
 
-  @@bacula::director::storage { $storage:
-    port          => $port,
-    password      => $password,
-    device_name   => $device_name,
-    media_type    => $media_type,
-    maxconcurjobs => $maxconcurjobs,
+  if $::storeconfigs {
+    @@bacula::director::storage { $storage:
+      port          => $port,
+      password      => $password,
+      device_name   => $device_name,
+      media_type    => $media_type,
+      maxconcurjobs => $maxconcurjobs,
+    }
   }
 }
