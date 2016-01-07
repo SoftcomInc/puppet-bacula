@@ -67,9 +67,11 @@ class bacula::client (
   }
 
   # Tell the director about this client config
-  @@bacula::director::client { $client:
-    port     => $port,
-    client   => $client,
-    password => $password,
+  if $::storeconfigs {
+    @@bacula::director::client { $client:
+      port     => $port,
+      client   => $client,
+      password => $password,
+    }
   }
 }
