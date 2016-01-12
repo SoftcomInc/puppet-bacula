@@ -6,5 +6,5 @@ umask 077
 
 logger $0
 
-pidof postgres postmaster > /dev/null && sudo -u postgres psql -c "SELECT pg_stop_backup();"
+pidof postgres postmaster > /dev/null && su postgres -c "psql -c \"SELECT pg_stop_backup();\""
 
