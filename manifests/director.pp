@@ -15,23 +15,24 @@
 #   }
 #
 class bacula::director (
-  $port                = '9101',
-  $listen_address      = $::ipaddress,
-  $db_user             = $bacula::params::bacula_user,
-  $db_pw               = 'notverysecret',
-  $db_name             = $bacula::params::bacula_user,
-  $db_type             = $bacula::params::db_type,
-  $password            = 'secret',
-  $max_concurrent_jobs = '20',
-  $packages            = $bacula::params::bacula_director_packages,
-  $services            = $bacula::params::bacula_director_services,
-  $homedir             = $bacula::params::homedir,
-  $rundir              = $bacula::params::rundir,
-  $conf_dir            = $bacula::params::conf_dir,
-  $director            = $::fqdn, # director here is not params::director
-  $director_address    = $bacula::params::director_address,
-  $storage             = $bacula::params::storage,
-  $group               = $bacula::params::bacula_group,
+  $port                  = '9101',
+  $listen_address        = $::ipaddress,
+  $db_user               = $bacula::params::bacula_user,
+  $db_pw                 = 'notverysecret',
+  $db_name               = $bacula::params::bacula_user,
+  $db_type               = $bacula::params::db_type,
+  $password              = 'secret',
+  $max_concurrent_jobs   = '20',
+  $maxconsoleconnections = '20',
+  $packages              = $bacula::params::bacula_director_packages,
+  $services              = $bacula::params::bacula_director_services,
+  $homedir               = $bacula::params::homedir,
+  $rundir                = $bacula::params::rundir,
+  $conf_dir              = $bacula::params::conf_dir,
+  $director              = $::fqdn, # director here is not params::director
+  $director_address      = $bacula::params::director_address,
+  $storage               = $bacula::params::storage,
+  $group                 = $bacula::params::bacula_group,
 ) inherits bacula::params {
 
   include bacula::common
