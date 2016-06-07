@@ -62,6 +62,7 @@ define bacula::director::job (
   $restoredir          = '/tmp/bacula-restores',
   $sched               = false,
   $priority            = false,
+  $maxconcurjobs       = '5',
 ) {
   validate_array($files)
   validate_array($excludes)
