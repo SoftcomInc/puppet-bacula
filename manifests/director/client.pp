@@ -6,7 +6,6 @@ define bacula::director::client (
   $file_retention = $bacula::params::file_retention,
   $job_retention  = $bacula::params::job_retention,
   $autoprune      = $bacula::params::autoprune,
-  $max_concurrent_jobs = '5',
 ) {
 
   concat::fragment { "bacula-director-client-${client}":
