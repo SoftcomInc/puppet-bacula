@@ -23,7 +23,6 @@ class bacula::director (
   $db_type               = $bacula::params::db_type,
   $password              = 'secret',
   $max_concurrent_jobs   = '20',
-  $maxconsoleconnections = '20',
   $packages              = $bacula::params::bacula_director_packages,
   $services              = $bacula::params::bacula_director_services,
   $homedir               = $bacula::params::homedir,

@@ -9,7 +9,6 @@ Director {                # define myself
     WorkingDirectory          = <%= @homedir %>
     Pid Directory             = <%= @rundir %>
     Maximum Concurrent Jobs   = <%= @max_concurrent_jobs %>
-    MaximumConsoleConnections = <%= @maxconsoleconnections %>
     Password                  = "<%= @password %>"  # Console password
     Messages                  = Daemon
 <%= scope.function_template(['bacula/_ssl.erb']) %>
