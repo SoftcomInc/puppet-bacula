@@ -91,18 +91,6 @@ class bacula::director (
     content => template('bacula/bacula-dir-tail.erb')
   }
 
-  bacula::messages { 'Standard-dir':
-    console => 'all, !skipped, !saved',
-    append  => '"/var/log/bacula/log" = all, !skipped',
-    catalog => 'all',
-  }
-
-  bacula::messages { 'Daemon':
-    mname   => 'Daemon',
-    console => 'all, !skipped, !saved',
-    append  => '"/var/log/bacula/log" = all, !skipped',
-  }
-
   Bacula::Director::Pool <<||>> { conf_dir => $conf_dir }
   Bacula::Director::Storage <<||>> { conf_dir => $conf_dir }
   Bacula::Director::Client <<||>> { conf_dir => $conf_dir }

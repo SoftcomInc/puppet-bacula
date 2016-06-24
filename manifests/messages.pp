@@ -10,10 +10,11 @@ define bacula::messages (
   $catalog     = undef,
   $syslog      = undef,
   $console     = undef,
-  $mail        = undef,
-  $operator    = undef,
   $mailcmd     = undef,
+  $mail        = undef,
+  $mailonerror = undef,
   $operatorcmd = undef,
+  $operator    = undef,
 ) {
   validate_re($daemon, ['^dir', '^sd', '^fd'])
 
