@@ -32,11 +32,13 @@ logger $0
 
 df -Th > /etc/partitions.log
 
+mkdir /var/backups 2> /dev/null
+
 # Mysqldump (if mysql is running)
 pidof mysqld > /dev/null && mysqldump --defaults-file=/etc/bacula/scripts/mysql-backupuser.cnf --single-transaction --skip-lock-tables --force --all-databases | bzip2 -c > /var/backups/`hostname`-mysql-full-`date +%A`.sql.bz2 && touch /var/tmp/lastmysqldump.status
 
 # pg_dumpall (if postmaster is running)
-pidof /usr/bin/postmaster > /dev/null && su postgres -c pg_dumpall | bzip2 -c > /var/lib/pgsql/backups/`hostname`-pgsql-full-`date +%A`.sql.bz2 && touch /var/tmp/lastpgdump.status
+pidof postgres postmaster > /dev/null && su postgres -c pg_dumpall | bzip2 -c > /var/backups/`hostname`-pgsql-full-`date +%A`.sql.bz2 && touch /var/tmp/lastpgdump.status
 
 # prepare PG for binary backup
 pidof postgres postmaster > /dev/null && su postgres -c "psql -c \"SELECT pg_start_backup('bacula `date +%Y%m%d-%H%M`');\""
