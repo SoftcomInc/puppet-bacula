@@ -15,13 +15,19 @@ class bacula::common (
 ) inherits bacula::params {
 
   if $ssl {
-    if versioncmp($::puppetversion, '4') >= 0 {
+    if $ssl_dir {
       class { 'bacula::ssl':
-        ssl_dir => '/etc/puppetlabs/puppet/ssl',
+        ssl_dir => $ssl_dir,
       }
     } else {
-      class { 'bacula::ssl':
-        ssl_dir => '/var/lib/puppet/ssl',
+      if versioncmp($::puppetversion, '4') >= 0 {
+        class { 'bacula::ssl':
+          ssl_dir => '/etc/puppetlabs/puppet/ssl',
+        }
+      } else {
+        class { 'bacula::ssl':
+          ssl_dir => '/var/lib/puppet/ssl',
+        }
       }
     }
   }

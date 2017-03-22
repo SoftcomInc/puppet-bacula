@@ -9,7 +9,7 @@ class bacula::params {
   $autoprune      = 'yes'
   $monitor        = true
   $ssl            = hiera('bacula::params::ssl', false)
-  $ssl_dir        = hiera('bacula::params::ssl_dir', '/etc/puppetlabs/puppet/ssl')
+  $ssl_dir        = hiera('bacula::params::ssl_dir', undef)
 
   validate_bool($ssl)
 
