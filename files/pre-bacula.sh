@@ -11,6 +11,9 @@ trap '' TSTP
 
 export TMPDIR=/var/tmp
 
+set -e
+set -o pipefail
+
 # function called on an error to return error to the screen and an exit code
 function bailout () {
         error=$1
@@ -32,7 +35,7 @@ logger $0
 
 df -Th > /etc/partitions.log
 
-mkdir /var/backups 2> /dev/null
+mkdir /var/backups 2> /dev/null || true
 
 # Mysqldump (if mysql is running)
 pidof mysqld > /dev/null && mysqldump --defaults-file=/etc/bacula/scripts/mysql-backupuser.cnf --single-transaction --skip-lock-tables --force --all-databases | bzip2 -c > /var/backups/`hostname`-mysql-full-`date +%A`.sql.bz2 && touch /var/tmp/lastmysqldump.status
